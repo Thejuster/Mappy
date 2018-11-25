@@ -115,6 +115,33 @@ void MainWindow::on_actionSave_Map_triggered()
     }
 
 
+
+    qDebug() << m.Tiles.count();
+
+
+    for(int i = 0; i <m.Tiles.count(); i++)
+    {
+        MappySaver::Tile t = static_cast<MappySaver::Tile>(m.Tiles[i]);
+
+        int duplicates = 0;
+        for(int j = 0; j < m.Tiles.count(); j++)
+        {
+           if(m.Tiles[i] == m.Tiles[j])
+           {
+               duplicates++;
+            qDebug() << "duplicato";
+           }else
+           {
+
+           }
+
+        }
+
+        if(duplicates > 1)
+            m.Tiles.removeAt(i);
+    }
+
+
         QFile f(filename);
 
          if(!f.open(QIODevice::WriteOnly))
@@ -172,6 +199,7 @@ void MainWindow::on_actionLoad_Map_triggered()
          in >> m.Tiles;
          f.flush();
 
+         qDebug() << m.Tiles.count();
 
          //Load Tileset file name
          QByteArray array;

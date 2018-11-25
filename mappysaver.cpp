@@ -45,3 +45,11 @@ QDataStream &operator>>(QDataStream &s, MappySaver::Tile& tile)
 }
 
 
+bool operator == (const MappySaver::Tile &tile, const MappySaver::Tile &match)
+{
+
+    return (tile.ID == match.ID) && (tile.h == match.h) && (tile.rect == match.rect) && (tile.w == match.w) &&
+           (tile.x == match.x) && (tile.y == match.y);
+}
+
+

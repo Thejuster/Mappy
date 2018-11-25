@@ -42,6 +42,7 @@ public:
 
 QDataStream& operator << (QDataStream& s, const MappySaver::Tile& tile);
 QDataStream& operator >> (QDataStream& s, MappySaver::Tile& tile);
+bool operator == (const MappySaver::Tile &tile, const MappySaver::Tile& match);
 
 
 #endif // MAPPYSAVER_H
