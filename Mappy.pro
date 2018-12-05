@@ -17,13 +17,21 @@ SOURCES += main.cpp\
     mapeditor.cpp \
     tileset.cpp \
     newmap.cpp \
-    mappysaver.cpp
+    mappysaver.cpp \
+    about.cpp \
+    clickablelabel.cpp
 
 HEADERS  += mainwindow.h \
     mapeditor.h \
     tileset.h \
     newmap.h \
-    mappysaver.h
+    mappysaver.h \
+    about.h \
+    clickablelabel.h
 
 FORMS    += mainwindow.ui \
-    newmap.ui
+    newmap.ui \
+    about.ui
+
+RESOURCES += \
+    res.qrc

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>Resource/pencil.png</file>
+        <file>Resource/favorite.png</file>
+        <file>Resource/diskette.png</file>
+    </qresource>
+</RCC>

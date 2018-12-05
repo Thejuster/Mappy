@@ -116,7 +116,13 @@ void Tileset::LoadTileset(QString filename)
 
 void Tileset::DrawCursor(QPainter *p)
 {
+    QPen old = p->pen();
+    QPen pp = p->pen();
+
+    pp.setColor(Qt::red);
+    p->setPen(pp);
     p->drawRect(msx / bw * bw,msy/bh*bh,bw,bh);
+    p->setPen(old);
 
 }
 

@@ -8,6 +8,7 @@
 #include "mappysaver.h"
 #include "qstring.h"
 #include "qdebug.h"
+#include "about.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -178,6 +179,8 @@ void MainWindow::on_actionSave_Map_triggered()
 
 void MainWindow::on_actionLoad_Map_triggered()
 {
+
+
     QString filename = QFileDialog::getOpenFileName(this,tr("Apri una mappa"),tr(""),tr("File Mappa (*.mp2d)"));
 
        QFile f(filename);
@@ -253,4 +256,17 @@ void MainWindow::on_actionLoad_Map_triggered()
         ui->maps->Tiles.append(t);
     }
 
+}
+
+
+void MainWindow::on_actionAbout_triggered()
+{
+    About *ab = new About();
+    ab->exec();
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+   //ToDO
+   //Adding secondary save method
 }
