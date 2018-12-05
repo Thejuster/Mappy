@@ -666,8 +666,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>true</bool>
    </attribute>
    <addaction name="separator"/>
-   <addaction name="actionPencil"/>
    <addaction name="actionSave"/>
+   <addaction name="actionPencil"/>
+   <addaction name="actionEraser"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_New_Map">
@@ -696,6 +697,12 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    </property>
   </action>
   <action name="actionPencil">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="res.qrc">
      <normaloff>:/icon/Resource/pencil.png</normaloff>:/icon/Resource/pencil.png</iconset>
@@ -708,6 +715,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    </property>
   </action>
   <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="res.qrc">
      <normaloff>:/icon/Resource/diskette.png</normaloff>:/icon/Resource/diskette.png</iconset>
@@ -717,6 +727,24 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    </property>
    <property name="toolTip">
     <string>Save current map</string>
+   </property>
+  </action>
+  <action name="actionEraser">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/Resource/eraser.png</normaloff>:/icon/Resource/eraser.png</iconset>
+   </property>
+   <property name="text">
+    <string>Eraser</string>
+   </property>
+   <property name="toolTip">
+    <string>Eraser</string>
    </property>
   </action>
  </widget>

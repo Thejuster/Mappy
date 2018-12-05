@@ -70,7 +70,7 @@ void MainWindow::on_action_New_Map_triggered()
         ui->maps->map = QPixmap(map->blw *32,map->blh *32);
         ui->maps->tileset = this->ui->tileset;
 
-
+        EnableTool();
     }
 }
 
@@ -88,6 +88,7 @@ void MainWindow::on_actionLoad_Tileset_triggered()
         {
             ui->tileset->LoadTileset(filename);
             ui->tileset->Tilename = filename;
+
         }
 }
 
@@ -175,6 +176,7 @@ void MainWindow::on_actionSave_Map_triggered()
         f.close();
 
 
+        this->currentfile = filename;
 }
 
 void MainWindow::on_actionLoad_Map_triggered()
@@ -256,6 +258,11 @@ void MainWindow::on_actionLoad_Map_triggered()
         ui->maps->Tiles.append(t);
     }
 
+    this->currentfile = filename;
+    ui->actionSave->setEnabled(true);
+
+    EnableTool();
+
 }
 
 
@@ -269,4 +276,108 @@ void MainWindow::on_actionSave_triggered()
 {
    //ToDO
    //Adding secondary save method
+    SaveMap(this->currentfile);
+
+
 }
+
+
+//Void called whit ToolBar
+void MainWindow::SaveMap(QString filename)
+{
+
+    MappySaver::Tile t;
+    MappySaver m;
+    Tileset tset;
+
+
+    for(int i = 0; i < ui->maps->Tiles.count(); i++)
+    {
+        t.ID = ui->maps->Tiles[i].ID;
+        t.h = ui->maps->Tiles[i].h;
+        t.rect = ui->maps->Tiles[i].rect;
+        t.w = ui->maps->Tiles[i].w;
+        t.x = ui->maps->Tiles[i].x;
+        t.y = ui->maps->Tiles[i].y;
+        m.Tiles.append(t);
+    }
+
+
+
+    qDebug() << m.Tiles.count();
+
+
+    for(int i = 0; i <m.Tiles.count(); i++)
+    {
+        MappySaver::Tile t = static_cast<MappySaver::Tile>(m.Tiles[i]);
+
+        int duplicates = 0;
+        for(int j = 0; j < m.Tiles.count(); j++)
+        {
+           if(m.Tiles[i] == m.Tiles[j])
+           {
+               duplicates++;
+            qDebug() << "duplicato";
+           }else
+           {
+
+           }
+
+        }
+
+        if(duplicates > 1)
+            m.Tiles.removeAt(i);
+    }
+
+
+        QFile f(filename);
+
+         if(!f.open(QIODevice::WriteOnly))
+         {
+
+         }else
+         {
+             QDataStream out(&f);
+             out.setVersion(QDataStream::Qt_4_8);
+
+             //Write all Tiles
+             out << m.Tiles;
+             f.flush();
+
+             //Write Tileset filename information
+             QString tilename = ui->tileset->Tilename;
+             out << tilename.toLocal8Bit();
+             f.flush();
+
+             //Write MapSize
+             out <<  ui->maps->blw;
+             f.flush();
+             out << ui->maps->blh;
+             f.flush();
+
+
+         }
+
+        f.flush();
+        f.close();
+
+
+        this->currentfile = filename;
+}
+
+
+//Enable Toolbar Instruments
+void MainWindow::EnableTool()
+{
+    ui->actionPencil->setEnabled(true);
+    ui->actionEraser->setEnabled(true);
+}
+
+
+//Disable Toolbar Instruments
+void MainWindow::DisableTool()
+{
+    ui->actionEraser->setEnabled(false);
+    ui->actionPencil->setEnabled(false);
+}
+

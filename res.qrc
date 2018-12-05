@@ -3,5 +3,6 @@
         <file>Resource/pencil.png</file>
         <file>Resource/favorite.png</file>
         <file>Resource/diskette.png</file>
+        <file>Resource/eraser.png</file>
     </qresource>
 </RCC>

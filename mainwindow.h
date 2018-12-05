@@ -19,6 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
    // QLabel *mouseCord = new QLabel();
+    QString currentfile;
 
 
 private slots:
@@ -36,6 +37,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    void SaveMap(QString filename);
+    void EnableTool();
+    void DisableTool();
 };
 
 #endif // MAINWINDOW_H
