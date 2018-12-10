@@ -43,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+
+
 }
 
 MainWindow::~MainWindow()
@@ -69,6 +71,8 @@ void MainWindow::on_action_New_Map_triggered()
         //Creating map
         ui->maps->map = QPixmap(map->blw *32,map->blh *32);
         ui->maps->tileset = this->ui->tileset;
+        ui->maps->Tiles.clear();
+
 
         EnableTool();
     }
@@ -371,6 +375,7 @@ void MainWindow::EnableTool()
 {
     ui->actionPencil->setEnabled(true);
     ui->actionEraser->setEnabled(true);
+
 }
 
 
