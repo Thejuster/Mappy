@@ -29,6 +29,7 @@ public:
     QPixmap map;
     Tileset *tileset;
     
+    bool mdown = false;
 
     //structure
     struct Tile
@@ -47,6 +48,7 @@ protected:
     void paintEvent(QPaintEvent *);
     void mouseMoveEvent(QMouseEvent *ev);
     void mousePressEvent(QMouseEvent *ev);
+    void mouseReleaseEvent(QMouseEvent *ev);
 
 signals:
     

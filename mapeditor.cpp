@@ -32,6 +32,28 @@ void mapeditor::mouseMoveEvent(QMouseEvent *ev)
 {
     msX = ev->x();
     msY = ev->y();
+
+    if(mdown)
+    {
+        Tile t;
+
+        bool find = false;
+
+        t.ID = Tiles.count();
+        t.x = ev->x() / bw * bw;
+        t.y = ev->y() / bh * bh;
+        t.rect = tileset->CropArea;
+
+
+        for(int i = 0; i < Tiles.count(); i ++)
+        {
+            if(Tiles[i].x == t.x && Tiles[i].y == t.y)
+                find=true;
+        }
+
+        if(!find)
+        Tiles.append(t);
+    }
 }
 
 
@@ -78,15 +100,40 @@ void mapeditor::DrawCursor(QPainter *p)
 
 void mapeditor::mousePressEvent(QMouseEvent *ev)
 {
+    mdown = true;
+
+
+
+}
+
+void mapeditor::mouseReleaseEvent(QMouseEvent *ev)
+{
+
+    mdown = false;
+
     Tile t;
+
+    bool find = false;
 
     t.ID = Tiles.count();
     t.x = ev->x() / bw * bw;
     t.y = ev->y() / bh * bh;
-    //t.rect = QRect(tileset->cropX,tileset->cropY,32,32);
-    //t.rect = QRect(tileset->cropX,tileset->cropY,tileset->RelX,tileset->RelY);
     t.rect = tileset->CropArea;
 
+    int tfind;
+
+    for(int i = 0; i < Tiles.count(); i ++)
+    {
+        if(Tiles[i].x == t.x && Tiles[i].y == t.y)
+        {
+            find=true;
+            tfind = i;
+        }
+    }
+
+
+
+   // if(!find)
     Tiles.append(t);
 
 }
