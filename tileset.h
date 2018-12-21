@@ -46,9 +46,10 @@ public slots:
     
 };
 
-
+/*
 QDataStream& operator <<(QDataStream &s, QString& tt);
 QDataStream& operator >>(QDataStream &in, QString& tt);
+*/
 
 #endif // TILESET_H
 

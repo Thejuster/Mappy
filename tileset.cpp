@@ -130,7 +130,7 @@ void Tileset::DrawCursor(QPainter *p)
 
 
 
-QDataStream& operator <<(QDataStream &s,QString& tt)
+/*QDataStream& operator <<(QDataStream &s,QString& tt)
 {
     s << tt;
     return s;
@@ -141,4 +141,4 @@ QDataStream& operator >>(QDataStream &in, QString& tt)
 {
     in >> tt;
     return in;
-}
+}*/
