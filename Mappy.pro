@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     newmap.cpp \
     mappysaver.cpp \
     about.cpp \
-    clickablelabel.cpp
+    clickablelabel.cpp \
+    jexport.cpp
 
 HEADERS  += mainwindow.h \
     mapeditor.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     newmap.h \
     mappysaver.h \
     about.h \
-    clickablelabel.h
+    clickablelabel.h \
+    jexport.h
 
 FORMS    += mainwindow.ui \
     newmap.ui \

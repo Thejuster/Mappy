@@ -1,5 +1,7 @@
 #include "mapeditor.h"
 #include "qpen.h"
+#include "QDebug"
+
 
 mapeditor::mapeditor(QWidget *parent) :
     QLabel(parent)
@@ -57,7 +59,7 @@ void mapeditor::mouseMoveEvent(QMouseEvent *ev)
 }
 
 
-//Create a dinamic grid
+//Create a dynamic grid
 void mapeditor::DrawGrid(QPainter *p)
 {
     QPen pen;
@@ -100,40 +102,53 @@ void mapeditor::DrawCursor(QPainter *p)
 
 void mapeditor::mousePressEvent(QMouseEvent *ev)
 {
-    mdown = true;
+    //mdown = true;
 
+    if(ev->button() == Qt::RightButton)
+    {
+        for(int i = 0; i < Tiles.count(); i++)
+        {
+            if(Tiles[i].x == msX && Tiles[i].y == msY)
+            {
+                Tiles.removeAt(i);
+
+            }
+        }
+    }else
+    {
+        mdown = true;
+    }
 
 
 }
 
 void mapeditor::mouseReleaseEvent(QMouseEvent *ev)
 {
+       mdown = false;
 
-    mdown = false;
+        Tile t;
 
-    Tile t;
+        bool find = false;
 
-    bool find = false;
+        t.ID = Tiles.count();
+        t.x = ev->x() / bw * bw;
+        t.y = ev->y() / bh * bh;
+        t.rect = tileset->CropArea;
 
-    t.ID = Tiles.count();
-    t.x = ev->x() / bw * bw;
-    t.y = ev->y() / bh * bh;
-    t.rect = tileset->CropArea;
+        int tfind;
 
-    int tfind;
-
-    for(int i = 0; i < Tiles.count(); i ++)
-    {
-        if(Tiles[i].x == t.x && Tiles[i].y == t.y)
+        for(int i = 0; i < Tiles.count(); i ++)
         {
-            find=true;
-            tfind = i;
+            if(Tiles[i].x == t.x && Tiles[i].y == t.y)
+            {
+                find=true;
+                tfind = i;
+            }
         }
-    }
 
 
 
-   // if(!find)
-    Tiles.append(t);
+       // if(!find)
+        Tiles.append(t);
 
 }

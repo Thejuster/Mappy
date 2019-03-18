@@ -30,3 +30,9 @@ void NewMap::UpdateSize()
 {
     ui->label_4->setText(tr("Map Size: %1 X %2 Pixel").arg(blw * 32).arg(blh * 32));
 }
+
+
+void NewMap::on_buttonBox_accepted()
+{
+
+}

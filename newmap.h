@@ -23,6 +23,8 @@ private slots:
 
     void on_spinBox_2_valueChanged(int arg1);
 
+    void on_buttonBox_accepted();
+
 private:
     Ui::NewMap *ui;
 };

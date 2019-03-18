@@ -9,6 +9,7 @@
 #include "qstring.h"
 #include "qdebug.h"
 #include "about.h"
+#include "jexport.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -183,11 +184,16 @@ void MainWindow::on_actionSave_Map_triggered()
         this->currentfile = filename;
 }
 
+
 void MainWindow::on_actionLoad_Map_triggered()
 {
 
+       //Flush Data
+       this->ui->maps->Tiles.clear();
+       this->ui->maps->update();
 
-    QString filename = QFileDialog::getOpenFileName(this,tr("Apri una mappa"),tr(""),tr("File Mappa (*.mp2d)"));
+
+       QString filename = QFileDialog::getOpenFileName(this,tr("Apri una mappa"),tr(""),tr("File Mappa (*.mp2d)"));
 
        QFile f(filename);
 
@@ -386,3 +392,12 @@ void MainWindow::DisableTool()
     ui->actionPencil->setEnabled(false);
 }
 
+
+void MainWindow::on_actionEraser_triggered()
+{
+    ui->actionEraser->setChecked(true);
+
+    JObject<int,QString> obj;
+    obj.Set(0,"Filename");
+
+}

@@ -35,6 +35,8 @@ private slots:
 
     void on_actionSave_triggered();
 
+    void on_actionEraser_triggered();
+
 private:
     Ui::MainWindow *ui;
     void SaveMap(QString filename);
