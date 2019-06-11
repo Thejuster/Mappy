@@ -106,19 +106,30 @@ public:
 
     void Finalize()
     {
-        Value << "}]";
+        Value << "]";
     }
 
-    void Push(QString Key,int value)
+    void Next()
     {
-        if(tmp.length() == 0)
+        Value << " , ";
+    }
+
+    void Push(QString Key,int value,bool cont = false)
+    {
+       /* if(tmp.length() == 0)
             tmp << "{ ";
         else
-            tmp << ",";
+            tmp << ",";*/
 
 
         Value << tmp << QString("\"%1\" : %2 ").arg(Key).arg(value);
+
+        if(cont)
+            Value << " , ";
+        else
+            Value << "}";
     }
+
 
 
 };

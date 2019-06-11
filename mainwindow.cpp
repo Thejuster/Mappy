@@ -406,38 +406,6 @@ void MainWindow::on_actionEraser_triggered()
 void MainWindow::on_actionExport_to_JSON_triggered()
 {
 
-   /* //Setting up JSON Object
-    JObject Project;
-    Project.Value("ProjectName","Mappy");
-
-    //Setting Serializer
-    JSerializer ser;
-    ser.AddObject(Project);
-
-
-
-   JArray<QString> tile;
-
-   tile.element << "Tileset : [";
-   tile.element << "{\"ID\":0, \"X\":64 , \"Y\":32},";
-   tile.element << "]";
-*/
-
-   //tile.Test();
-
-    //Adding Tiles
-   /* JTile tiles;
-
-    for(int i = 0; i < ui->maps->Tiles.count(); i++)
-    {
-
-        tiles.Add(ui->maps->Tiles[i].ID,ui->maps->Tiles[i].x,ui->maps->Tiles[i].y);
-        ser << tiles;
-    }*/
-
-   // ser.b.append(tile.element);
-    //ser << tile.element;
-
 
 
 
@@ -449,12 +417,31 @@ void MainWindow::on_actionExport_to_JSON_triggered()
 
     ser.b << ",";
 
+    ser.AddObject("file",QString(ui->maps->tileset->Tilename));
+
+    ser.b << ",";
+
     //Tilesets
 
     JNumberArray tile;
 
     tile.Initialize("Tileset");
-    tile.Push("ID",0);
+
+
+    for(int i = 0; i < ui->maps->Tiles.count(); i++)
+    {
+        tile.Value << "{";
+        tile.Push("ID",ui->maps->Tiles[i].ID,true);
+        tile.Push("X",ui->maps->Tiles[i].x,true);
+        tile.Push("Y",ui->maps->Tiles[i].y,false);
+
+        if(i < ui->maps->Tiles.count()-1)
+        tile.Next();
+    }
+
+
+
+
 
     tile.Finalize();
 
@@ -464,7 +451,6 @@ void MainWindow::on_actionExport_to_JSON_triggered()
 
     ser.Finalize();
 
-    //ser.Serialize();
 
     QString file = QFileDialog::getSaveFileName(this,tr("Save to Json"),"",tr("*.txt"));
 
