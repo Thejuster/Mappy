@@ -655,7 +655,14 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuTool">
+    <property name="title">
+     <string>Tool</string>
+    </property>
+    <addaction name="actionExport_to_JSON"/>
+   </widget>
    <addaction name="menuFIle"/>
+   <addaction name="menuTool"/>
    <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -663,7 +670,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="separator"/>
    <addaction name="actionSave"/>
@@ -745,6 +752,11 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    </property>
    <property name="toolTip">
     <string>Eraser</string>
+   </property>
+  </action>
+  <action name="actionExport_to_JSON">
+   <property name="text">
+    <string>Export to JSON</string>
    </property>
   </action>
  </widget>

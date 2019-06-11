@@ -10,6 +10,7 @@
 #include "qdebug.h"
 #include "about.h"
 #include "jexport.h"
+#include "QDebug"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
+
 }
 
 void MainWindow::on_action_New_Map_triggered()
@@ -397,7 +400,85 @@ void MainWindow::on_actionEraser_triggered()
 {
     ui->actionEraser->setChecked(true);
 
-    JObject<int,QString> obj;
-    obj.Set(0,"Filename");
+}
 
+//Export to Simple JSON
+void MainWindow::on_actionExport_to_JSON_triggered()
+{
+
+   /* //Setting up JSON Object
+    JObject Project;
+    Project.Value("ProjectName","Mappy");
+
+    //Setting Serializer
+    JSerializer ser;
+    ser.AddObject(Project);
+
+
+
+   JArray<QString> tile;
+
+   tile.element << "Tileset : [";
+   tile.element << "{\"ID\":0, \"X\":64 , \"Y\":32},";
+   tile.element << "]";
+*/
+
+   //tile.Test();
+
+    //Adding Tiles
+   /* JTile tiles;
+
+    for(int i = 0; i < ui->maps->Tiles.count(); i++)
+    {
+
+        tiles.Add(ui->maps->Tiles[i].ID,ui->maps->Tiles[i].x,ui->maps->Tiles[i].y);
+        ser << tiles;
+    }*/
+
+   // ser.b.append(tile.element);
+    //ser << tile.element;
+
+
+
+
+    JSerializer ser;
+
+    ser.Initialize();
+
+    ser.AddObject("ProjectName","Mappy");
+
+    ser.b << ",";
+
+    //Tilesets
+
+    JNumberArray tile;
+
+    tile.Initialize("Tileset");
+    tile.Push("ID",0);
+
+    tile.Finalize();
+
+
+
+    ser.b << tile.Value;
+
+    ser.Finalize();
+
+    //ser.Serialize();
+
+    QString file = QFileDialog::getSaveFileName(this,tr("Save to Json"),"",tr("*.txt"));
+
+
+    QFile data(file);
+    if (data.open(QFile::Append ))
+    {
+     QTextStream out(&data);
+
+     for(int i = 0; i < ser.b.count(); i++)
+     {
+         out << ser.b[i] + "\n";
+     }
+
+     data.putChar('\n');
+    }
 }

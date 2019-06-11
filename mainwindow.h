@@ -37,6 +37,8 @@ private slots:
 
     void on_actionEraser_triggered();
 
+    void on_actionExport_to_JSON_triggered();
+
 private:
     Ui::MainWindow *ui;
     void SaveMap(QString filename);
