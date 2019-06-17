@@ -406,18 +406,14 @@ void MainWindow::on_actionEraser_triggered()
 void MainWindow::on_actionExport_to_JSON_triggered()
 {
 
-
-
-
     JSerializer ser;
-
     ser.Initialize();
 
     ser.AddObject("ProjectName","Mappy");
 
     ser.b << ",";
 
-    ser.AddObject("file",QString(ui->maps->tileset->Tilename));
+    ser.AddObject("File",QString(ui->maps->tileset->Tilename));
 
     ser.b << ",";
 
@@ -433,7 +429,11 @@ void MainWindow::on_actionExport_to_JSON_triggered()
         tile.Value << "{";
         tile.Push("ID",ui->maps->Tiles[i].ID,true);
         tile.Push("X",ui->maps->Tiles[i].x,true);
-        tile.Push("Y",ui->maps->Tiles[i].y,false);
+        tile.Push("Y",ui->maps->Tiles[i].y,true);
+        tile.Push("Tx",ui->maps->Tiles[i].rect.x(),true);
+        tile.Push("Ty",ui->maps->Tiles[i].rect.y(),true);
+        tile.Push("Tw",ui->maps->Tiles[i].rect.width(),true);
+        tile.Push("Th",ui->maps->Tiles[i].rect.height(),false);
 
         if(i < ui->maps->Tiles.count()-1)
         tile.Next();
@@ -446,10 +446,10 @@ void MainWindow::on_actionExport_to_JSON_triggered()
     tile.Finalize();
 
 
-
     ser.b << tile.Value;
 
     ser.Finalize();
+
 
 
     QString file = QFileDialog::getSaveFileName(this,tr("Save to Json"),"",tr("*.txt"));

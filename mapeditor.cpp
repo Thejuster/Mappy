@@ -1,7 +1,7 @@
 #include "mapeditor.h"
 #include "qpen.h"
 #include "QDebug"
-
+#include "qmessagebox.h"
 
 mapeditor::mapeditor(QWidget *parent) :
     QLabel(parent)
@@ -135,6 +135,7 @@ void mapeditor::mouseReleaseEvent(QMouseEvent *ev)
         t.y = ev->y() / bh * bh;
         t.rect = tileset->CropArea;
 
+
         int tfind;
 
         for(int i = 0; i < Tiles.count(); i ++)
@@ -150,5 +151,6 @@ void mapeditor::mouseReleaseEvent(QMouseEvent *ev)
 
        // if(!find)
         Tiles.append(t);
+
 
 }

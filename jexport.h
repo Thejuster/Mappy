@@ -70,10 +70,6 @@ public:
         pice.append(t);
     }
 
-
-
-
-
 };
 
 
@@ -152,7 +148,7 @@ public:
 
     void Initialize()
     {
-        b.append("{");
+        b.append("var data = {");
     }
 
     void Finalize()
@@ -181,7 +177,6 @@ public:
     void Serialize()
     {
         b << "{";
-
 
 
         for(int i = 0; i < lst.count(); i++)

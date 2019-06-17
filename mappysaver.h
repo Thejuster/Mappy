@@ -23,7 +23,7 @@ public:
     {
     public:
         int ID;
-        int x,y,w,h;
+        int x,y,w,h,Tx,Ty,Tw,Th;
         QRect rect;
     };
 

@@ -49,7 +49,7 @@ bool operator == (const MappySaver::Tile &tile, const MappySaver::Tile &match)
 {
 
     return (tile.ID == match.ID) && (tile.h == match.h) && (tile.rect == match.rect) && (tile.w == match.w) &&
-           (tile.x == match.x) && (tile.y == match.y);
+            (tile.x == match.x) && (tile.y == match.y) && (tile.Tx == match.Tx) && (tile.Ty == match.Ty);
 }
 
 
