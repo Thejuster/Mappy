@@ -20,6 +20,7 @@ public:
     ~MainWindow();
    // QLabel *mouseCord = new QLabel();
     QString currentfile;
+    int JSONVer = 1;
 
 
 private slots:
@@ -38,6 +39,8 @@ private slots:
     void on_actionEraser_triggered();
 
     void on_actionExport_to_JSON_triggered();
+
+    void on_actionEventMode_triggered();
 
 private:
     Ui::MainWindow *ui;

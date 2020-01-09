@@ -74,6 +74,9 @@ void Tileset::mouseReleaseEvent(QMouseEvent *ev)
      CropArea = QRect(SelectionStart.x(),SelectionStart.y(),SelectionEnd.x(),SelectionEnd.y());
 
      DrawSelection=true;
+
+     Tx = ev->x() / 32 * 32;
+     Ty = ev->y() / 32 * 32;
 }
 
 

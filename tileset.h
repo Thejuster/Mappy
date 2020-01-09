@@ -29,6 +29,7 @@ public:
     QPoint SelectionStart;
     QPoint SelectionEnd;
     bool DrawSelection=false;
+    int Tx,Ty;
 
 private:
     bool StartCrop = false;

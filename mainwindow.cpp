@@ -406,6 +406,11 @@ void MainWindow::on_actionEraser_triggered()
 void MainWindow::on_actionExport_to_JSON_triggered()
 {
 
+    if(JSONVer == 1)
+    {
+
+
+
     JSerializer ser;
     ser.Initialize();
 
@@ -466,5 +471,26 @@ void MainWindow::on_actionExport_to_JSON_triggered()
      }
 
      data.putChar('\n');
+    }
+
+    }
+
+    if(JSONVer == 2)
+    {
+        for(int i = 0; i < ui->maps->Tiles.count(); i++)
+        {
+            int tx = ui->maps->Tiles[i].Tx;
+            int ty = ui->maps->Tiles[i].Ty;
+
+            qDebug() << QString("Tx : %1  Ty: %2").arg(tx).arg(ty);
+        }
+    }
+}
+
+void MainWindow::on_actionEventMode_triggered()
+{
+    if(ui->actionEventMode->isChecked())
+    {
+      ui->maps->eventMode=true;
     }
 }

@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>696</width>
-    <height>644</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Mappy</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
+   <iconset>
     <normaloff>:/icon/Resource/favorite.png</normaloff>:/icon/Resource/favorite.png</iconset>
   </property>
   <property name="styleSheet">
@@ -515,7 +515,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
                <x>0</x>
                <y>0</y>
                <width>317</width>
-               <height>519</height>
+               <height>475</height>
               </rect>
              </property>
              <widget class="Tileset" name="tileset">
@@ -576,7 +576,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
                <x>0</x>
                <y>0</y>
                <width>316</width>
-               <height>519</height>
+               <height>475</height>
               </rect>
              </property>
              <widget class="mapeditor" name="maps">
@@ -676,6 +676,8 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    <addaction name="actionSave"/>
    <addaction name="actionPencil"/>
    <addaction name="actionEraser"/>
+   <addaction name="separator"/>
+   <addaction name="actionEventMode"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_New_Map">
@@ -711,7 +713,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/icon/Resource/pencil.png</normaloff>:/icon/Resource/pencil.png</iconset>
    </property>
    <property name="text">
@@ -726,7 +728,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/icon/Resource/diskette.png</normaloff>:/icon/Resource/diskette.png</iconset>
    </property>
    <property name="text">
@@ -744,7 +746,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/icon/Resource/eraser.png</normaloff>:/icon/Resource/eraser.png</iconset>
    </property>
    <property name="text">
@@ -757,6 +759,14 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
   <action name="actionExport_to_JSON">
    <property name="text">
     <string>Export to JSON</string>
+   </property>
+  </action>
+  <action name="actionEventMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Event Mode</string>
    </property>
   </action>
  </widget>
@@ -773,8 +783,6 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    <header location="global">tileset.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

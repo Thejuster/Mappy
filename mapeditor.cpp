@@ -3,6 +3,10 @@
 #include "QDebug"
 #include "qmessagebox.h"
 
+/* (C) Copyright Making Italia - By Thejuster
+ * for pierotofy.it Community
+ **/
+
 mapeditor::mapeditor(QWidget *parent) :
     QLabel(parent)
 {
@@ -16,7 +20,6 @@ void mapeditor::paintEvent(QPaintEvent *)
 
     for(int i = 0; i < Tiles.count(); i++)
     {
-        //p.drawPixmap(Tiles[i].x,Tiles[i].y,tileset->Tilesets,Tiles[i].rect.x(),Tiles[i].rect.y(),Tiles[i].rect.width()+bw,Tiles[i].rect.height()+bh);
         p.drawPixmap(Tiles[i].x,Tiles[i].y,tileset->Tilesets,Tiles[i].rect.x(),Tiles[i].rect.y(),Tiles[i].rect.width()- Tiles[i].rect.x() + 32,Tiles[i].rect.height() - Tiles[i].rect.y() + 32);
     }
 
@@ -86,17 +89,31 @@ void mapeditor::DrawGrid(QPainter *p)
 }
 
 
+
 void mapeditor::DrawCursor(QPainter *p)
 {
+    if(!eventMode)
+    {
      p->drawRect(QRect(msX / bw * bw,msY / bh * bh,bw,bh));
-
-     //p->drawPixmap(QPoint(msx / bw *bw,msY / bh * bh),tileset->Tilesets,tileset->CropArea);
-
      p->setOpacity(.5f);
      p->drawPixmap(QPoint(msX / bw * bw,msY / bh * bh),tileset->Tilesets,QRect(tileset->SelectionStart.x(),tileset->SelectionStart.y(),tileset->SelectionEnd.x() - tileset->SelectionStart.x() + 32 ,tileset->SelectionEnd.y() - tileset->SelectionStart.y() + 32));
 
-    // QRect end = QRect(tileset->SelectionStart.x(),tileset->SelectionStart.y(),tileset->SelectionEnd.x() - tileset->SelectionStart.x(),tileset->SelectionEnd.y() - tileset->SelectionStart.x());
-    // p->drawPixmap(QPoint(msX * bw * bw,msY / bh * bh),tileset->Tilesets,end);
+    }else
+    {
+        QPen old = p->pen();
+
+        QPen pn;
+        pn.setColor(Qt::red);
+        pn.setWidthF(2.0f);
+        p->setPen(pn);
+
+        p->drawRect(QRect(msX / bw * bw,msY / bh * bh,bw,bh));
+
+        p->fillRect(QRect((msX / bw * bw) + 5,(msY / bh * bh)+5,bw-10,bh-10),Qt::darkGray);
+
+        p->setPen(old);
+    }
+
 }
 
 
@@ -134,6 +151,8 @@ void mapeditor::mouseReleaseEvent(QMouseEvent *ev)
         t.x = ev->x() / bw * bw;
         t.y = ev->y() / bh * bh;
         t.rect = tileset->CropArea;
+        t.Tx = tileset->Tx;
+        t.Ty = tileset->Ty;
 
 
         int tfind;

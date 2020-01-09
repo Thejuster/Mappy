@@ -33,14 +33,14 @@ void MappySaver::SaveMap(QString filename)
 
 QDataStream &operator<<(QDataStream &s, const MappySaver::Tile& tile)
 {
-    s << tile.h << tile.ID << tile.rect << tile.w << tile.x << tile.y;
+    s << tile.h << tile.ID << tile.rect << tile.w << tile.x << tile.y << tile.Tx << tile.Ty;
     return s;
 }
 
 
 QDataStream &operator>>(QDataStream &s, MappySaver::Tile& tile)
 {
-  s >> tile.h >> tile.ID >> tile.rect >> tile.w >> tile.x >> tile.y;
+  s >> tile.h >> tile.ID >> tile.rect >> tile.w >> tile.x >> tile.y << tile.Tx << tile.Ty;
   return s;
 }
 

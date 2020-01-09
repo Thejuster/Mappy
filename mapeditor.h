@@ -30,6 +30,7 @@ public:
     Tileset *tileset;
     
     bool mdown = false;
+    bool eventMode=false;
 
     //structure
     struct Tile
@@ -38,6 +39,7 @@ public:
         int ID;
         int x,y,w,h;
         QRect rect;
+        int Tx,Ty;
     };
 
 
